@@ -70,6 +70,11 @@ class myChat(threading.Thread):
                 fpath = input()
                 print('name:', end=' ')
                 fname = input()
+                
+                if not os.path.exists(os.path.join(fpath, fname)):
+                    print("No Such File or Directory, Please Check!")
+                    continue
+                
                 data = open(os.path.join(fpath, fname), 'rb')
                 fsize = str(os.path.getsize(os.path.join(fpath, fname)))
                 self.client_socket.sendall((self.name+':'+fname+':'+fsize).encode())
